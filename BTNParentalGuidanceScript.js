@@ -132,7 +132,7 @@
 
             let apiKey = '';
             if (!apiKey || apiKey.trim() === '') {
-                GM.notification("Please Add TMDB API Key In Settings", "BTN Parental Helper");
+                GM.notification("Please Add TMDB API Key On Line 133", "BTN Parental Helper");
                 console.log('No API Key. Stopping script.');
                 return;
             }
