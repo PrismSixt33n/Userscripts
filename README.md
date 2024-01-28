@@ -19,4 +19,8 @@ PTPTMDBHelper.js
 ------------------------------
 Adds a lot of functionality to PassThePopcorns movie pages including
 
-Scrollable Fanart Carousel (via menu option), Scrollabe Posters Overlay, Additional Movie Info With Additional Links, Additional Video List / Panel & TMDB Reviews / Panel
+Scrollable Fanart Carousel (via menu option), Scrollable Posters Overlay, Additional Movie Info With Additional Links, Additional Video List / Panel & TMDB Reviews / Panel
+
+PTPSearchForTrailers.js
+------------------------------
+Adds a menu option to search youtube for trailers.
