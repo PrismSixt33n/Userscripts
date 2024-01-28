@@ -14,3 +14,13 @@ Swaps the text cetification tag for a image logo on PassThePopcorn.
 PTPFanartTVAPIAdditions.js
 ------------------------------
 Uses the TMDB & FanartTV APIS to add additional artwork to the PassThePopcorn Movie pages.
+
+PTPTMDBHelper.js
+------------------------------
+Adds a lot of functionality to PassThePopcorns movie pages including
+
+Scrollable Fanart Carousel (via menu option)
+Scrollabe Posters Overlay
+Additional Movie Info With Additional Links
+Additional Video List / Panel
+TMDB Reviews / Panel
