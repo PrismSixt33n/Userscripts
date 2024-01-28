@@ -11,3 +11,6 @@ PTPAgeRatingLogos.js
 ------------------------------
 Swaps the text cetification tag for a image logo on PassThePopcorn.
 
+PTPFanartTVAPIAdditions.js
+------------------------------
+Uses the TMDB & FanartTV APIS to add additional artwork to the PassThePopcorn Movie pages.
