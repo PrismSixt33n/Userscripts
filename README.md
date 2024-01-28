@@ -28,3 +28,7 @@ Adds a menu option to search youtube for trailers.
 PTPParentalGuidanceHelper.js - (No API Key Needed)
 ------------------------------
 Brings IMDBs Parental guidance notes too PTPs Movie pages. 
+
+PTP2RadarrMod.js
+------------------------------
+A mod of PTP to Radarr with a cleaner more text based system instead of images and overlays.
