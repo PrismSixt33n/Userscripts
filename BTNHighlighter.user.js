@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         BTN Highlighter
-// @version      1.3.1
+// @name         BTN Highlighter Bundle
+// @version      1.3.1b
 // @description  Allows for custom highlighting on torrents.
 // @author       JimboDev
 // @downloadURL  https://gitea.com/Jimbo/PT-Userscripts/raw/branch/main/btn-highlighter.user.js
