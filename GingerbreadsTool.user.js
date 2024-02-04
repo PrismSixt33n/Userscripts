@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Gingerbreads Tool
-// @version      0.1
+// @version      0.2
 // @description  Add a link with item count to the page
 // @author       Prism16
-// @match        https://www.morethantv.me/index.php
+// @match        https://www.morethantv.me/*
 // @grant        none
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js
 // ==/UserScript==
