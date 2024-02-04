@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MTV2Sonarr
-// @version      1.0
+// @version      1.1
 // @description  Add shows directly to sonarr via the MTV tv show pages and V3 api (Based on BTN2Sonarr v1.3)
 // @author       Prism16
 // @match        https://www.morethantv.me/user.php?action=edit*
@@ -42,12 +42,12 @@ function settingsPanel() {
     newPanelContent.innerHTML = `
         <td>
             <label>Sonarr ApiKey: <input type="text" name="ApiKey" value="${GM_getValue('ApiKey', '')}"></label>
-            <label>Sonarr URL: <input type="text" name="URL" value="${GM_getValue('URL', '')}"></label>
-            <label>Sonarr Path: <input type="text" name="Path" value="${GM_getValue('Path', '')}"></label>
-            <label>Sonarr ProfileID: <input type="text" name="ProfileID" value="${GM_getValue('ProfileID', '')}"></label>
-            <label>Sonarr LanguageID: <input type="text" name="LanguageID" value="${GM_getValue('LanguageID', '')}"></label>
-            <label>Search On Add: <input type="checkbox" name="SearchOnAdd" ${GM_getValue('SearchOnAdd', false) ? 'checked' : ''}></label>
-            <label>Seasons Choice:
+            <br><label>Sonarr URL: <input type="text" name="URL" value="${GM_getValue('URL', '')}"></label>
+            <br><label>Sonarr Path: <input type="text" name="Path" value="${GM_getValue('Path', '')}"></label>
+            <br><label>Sonarr ProfileID: <input type="text" name="ProfileID" value="${GM_getValue('ProfileID', '')}"></label>
+            <br><label>Sonarr LanguageID: <input type="text" name="LanguageID" value="${GM_getValue('LanguageID', '')}"></label>
+            <br><label>Search On Add: <input type="checkbox" name="SearchOnAdd" ${GM_getValue('SearchOnAdd', false) ? 'checked' : ''}></label>
+            <br><br><label>Seasons Choice:
                 <select name="SeasonsChoice">
                     <option value="ALL" ${GM_getValue('SeasonsChoice', '') === 'ALL' ? 'selected' : ''}>ALL</option>
                     <option value="NONE" ${GM_getValue('SeasonsChoice', '') === 'NONE' ? 'selected' : ''}>NONE</option>
@@ -275,27 +275,31 @@ function getTVDBIdAndPassToSonarr() {
             },
             onload: function(response) {
                 let result = JSON.parse(response.responseText);
-                let linkbox = document.querySelector("#content > div > div > div.linkbox");
-                let aElement = document.createElement('a');
-                aElement.href = '#';
+                let sidebarImage = document.querySelector("#content > div > div > div.sidebar > div:nth-child(1) > img");
+                let buttonElement = document.createElement('button');
+                buttonElement.style.fontWeight = "bold";
+                buttonElement.style.marginBottom = "5px";
+                buttonElement.style.position = "relative";
+                buttonElement.style.left = "50%";
+                buttonElement.style.transform = "translateX(-50%)";
+                buttonElement.style.backgroundColor = "transparent";
                 if (result[0] && result[0].path) {
-                    aElement.textContent = '[View In Sonarr]';
-                    aElement.style.color = "#b1fcb1";
-                    aElement.style.fontWeight = "bold";
+                    buttonElement.textContent = 'View In Sonarr';
+                    buttonElement.style.color = "#b1fcb1";
                     let sonarrSeriesUrl = `${window.sonarrUrl}/series/${result[0].titleSlug}`;
-                    aElement.href = sonarrSeriesUrl;
-                    aElement.target = '_blank';
+                    buttonElement.onclick = function() {
+                        window.open(sonarrSeriesUrl, '_blank');
+                    };
                 } else {
-                    aElement.textContent = '[Add to Sonarr]';
-                    aElement.style.color = "#afe4ee";
-                    aElement.style.fontWeight = "bold";
-                    aElement.onclick = function() {
+                    buttonElement.textContent = 'Add to Sonarr';
+                    buttonElement.style.color = "#afe4ee";
+                    buttonElement.onclick = function() {
                         addToSonarr(result);
                         return false;
                     };
                 }
 
-                linkbox.appendChild(aElement);
+                sidebarImage.parentNode.insertBefore(buttonElement, sidebarImage);
             }
         });
     } else {
