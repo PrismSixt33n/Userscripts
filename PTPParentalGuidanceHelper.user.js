@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PTP Parental Guidance Helper
 // @namespace    Prism16
-// @version      1
+// @version      1.1
 // @description  Add IMDB Parental Guidance Notes Onto PTP
 // @author       Prism16
 // @match        https://passthepopcorn.me/torrents.php*
@@ -12,6 +12,21 @@
 (function() {
     'use strict';
 ;
+
+    let hidetext = true; // or false
+
+        let style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `
+        .spoiler {
+            color: transparent;
+        }
+        .spoiler:hover {
+            color: inherit;
+        }
+    `;
+    document.getElementsByTagName('head')[0].appendChild(style);
+
     var link = document.querySelector("a#imdb-title-link.rating");
     var imdbUrl = link.getAttribute("href");
     var advisoryDiv = document.createElement('div');
@@ -56,9 +71,12 @@
             advisoryDiv.appendChild(sexnudityTitle);}
                     if (sexnudityStatus) {
             advisoryDiv.appendChild(sexnudityStatus);}
-                    if (sexnudityText) {
-            advisoryDiv.appendChild(sexnudityText);}
-
+    if (sexnudityText) {
+        if (hidetext) {
+            sexnudityText.classList.add('spoiler');
+        }
+        advisoryDiv.appendChild(sexnudityText);
+    }
             var violencegoreTitle = doc.querySelector('#advisory-violence > h4');
             var violencegoreStatus = doc.querySelector('#advisory-violence > ul > li > div > label > div.ipl-swapper__content.ipl-swapper__content-primary > div > span');
             var violencegoreText = doc.querySelector('#advisory-violence > ul > li.ipl-zebra-list__item');
@@ -67,8 +85,12 @@
                     if (violencegoreStatus) {
             advisoryDiv.appendChild(violencegoreStatus);}
 
-                    if (violencegoreText) {
-            advisoryDiv.appendChild(violencegoreText);}
+    if (violencegoreText) {
+        if (hidetext) {
+            violencegoreText.classList.add('spoiler');
+        }
+        advisoryDiv.appendChild(violencegoreText);
+    }
 
             var profanityTitle = doc.querySelector('#advisory-profanity > h4');
             var profanityStatus = doc.querySelector('#advisory-profanity > ul > li > div > label > div.ipl-swapper__content.ipl-swapper__content-primary > div > span');
@@ -78,8 +100,12 @@
                     if (profanityStatus) {
             advisoryDiv.appendChild(profanityStatus);}
 
-                    if (profanityText) {
-            advisoryDiv.appendChild(profanityText);}
+    if (profanityText) {
+        if (hidetext) {
+            profanityText.classList.add('spoiler');
+        }
+        advisoryDiv.appendChild(profanityText);
+    }
 
             var alcoholdrugsTitle = doc.querySelector('#advisory-alcohol > h4');
             var alcoholdrugsStatus = doc.querySelector('#advisory-alcohol > ul > li > div > label > div.ipl-swapper__content.ipl-swapper__content-primary > div > span');
@@ -89,8 +115,12 @@
                     if (alcoholdrugsStatus) {
             advisoryDiv.appendChild(alcoholdrugsStatus);}
 
-                    if (alcoholdrugsText) {
-            advisoryDiv.appendChild(alcoholdrugsText);}
+    if (alcoholdrugsText) {
+        if (hidetext) {
+            alcoholdrugsText.classList.add('spoiler');
+        }
+        advisoryDiv.appendChild(alcoholdrugsText);
+    }
 
             var frighteningTitle = doc.querySelector('#advisory-frightening > h4');
             var frighteningStatus = doc.querySelector('#advisory-frightening > ul > li > div > label > div.ipl-swapper__content.ipl-swapper__content-primary > div > span');
@@ -100,8 +130,12 @@
                     if (frighteningStatus) {
             advisoryDiv.appendChild(frighteningStatus);}
 
-                    if (frighteningText) {
-            advisoryDiv.appendChild(frighteningText);}
+    if (frighteningText) {
+        if (hidetext) {
+            frighteningText.classList.add('spoiler');
+        }
+        advisoryDiv.appendChild(frighteningText);
+    }
 
             var elements = document.querySelectorAll('h4.ipl-list-title');
             elements.forEach(function(element) {
