@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         BTN Banner Yoinker
+// @name         Image Source Yoinker
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Copy the src of the image with id 'banner' to the clipboard.
-// @author       Prism16
+// @version      0.2
+// @description  Copy the src of the image with id 'banner' to the clipboard and notify
+// @author       You
 // @match        https://broadcasthe.net/series.php?id=*
 // @icon         https://broadcasthe.net/favicon.ico
 // @grant        GM_setClipboard
@@ -17,7 +17,7 @@
     if (imgElement) {
         let imgSrc = imgElement.getAttribute("src");
         if (imgSrc.startsWith("//")) {
-            imgSrc = imgSrc.substring(2);
+            imgSrc = "https:" + imgSrc;
         }
 
         // Create the YOINK!! link
