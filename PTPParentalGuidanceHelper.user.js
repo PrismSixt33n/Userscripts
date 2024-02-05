@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PTP Parental Guidance Helper
 // @namespace    Prism16
-// @version      1.2
+// @version      1.3
 // @description  Add IMDB Parental Guidance Notes Onto PTP
 // @author       Prism16
 // @match        https://passthepopcorn.me/torrents.php*
@@ -27,35 +27,48 @@
     `;
     document.getElementsByTagName('head')[0].appendChild(style);
 
-    var link = document.querySelector("a#imdb-title-link.rating");
-    var imdbUrl = link.getAttribute("href");
-    var advisoryDiv = document.createElement('div');
-    imdbUrl += "parentalguide";
+var link = document.querySelector("a#imdb-title-link.rating");
+var imdbUrl = link.getAttribute("href");
+var advisoryDiv = document.createElement('div');
+imdbUrl += "parentalguide";
 
-    var newPanel = document.createElement('div');
-    newPanel.className = 'panel';
-    newPanel.id = 'parents_guide';
-    var panelHeading = document.createElement('div');
-    panelHeading.className = 'panel__heading';
-    var title = document.createElement('span');
-    title.className = 'panel__heading__title';
+var newPanel = document.createElement('div');
+newPanel.className = 'panel';
+newPanel.id = 'parents_guide';
+var panelHeading = document.createElement('div');
+panelHeading.className = 'panel__heading';
+var title = document.createElement('span');
+title.className = 'panel__heading__title';
 
-    var imdb = document.createElement('span');
-    imdb.style.color = '#F2DB83';
-    imdb.textContent = 'iMDB';
+var imdb = document.createElement('span');
+imdb.style.color = '#F2DB83';
+imdb.textContent = 'iMDB';
 
-    title.appendChild(imdb);
-    title.appendChild(document.createTextNode(' Parental Notes'));
+title.appendChild(imdb);
+title.appendChild(document.createTextNode(' Parental Notes'));
 
-    panelHeading.appendChild(title);
-    newPanel.appendChild(panelHeading);
-    var panelBody = document.createElement('div');
-    panelBody.className = 'panel__body';
-    panelBody.style.position = 'relative';
-    panelBody.appendChild(advisoryDiv);
-    newPanel.appendChild(panelBody);
-    var sidebar = document.querySelector('div.sidebar');
-    sidebar.insertBefore(newPanel, sidebar.childNodes[4]);
+// Create the toggle element
+var toggle = document.createElement('a');
+toggle.className = 'panel__heading__toggler';
+toggle.title = 'Toggle';
+toggle.href = '#';
+toggle.textContent = 'Toggle';
+toggle.onclick = function() {
+    var panelBody = document.querySelector('#parents_guide .panel__body');
+    panelBody.style.display = (panelBody.style.display === 'none') ? 'block' : 'none';
+    return false;
+};
+
+panelHeading.appendChild(title);
+panelHeading.appendChild(toggle);  // Append the toggle to the panel heading
+newPanel.appendChild(panelHeading);
+var panelBody = document.createElement('div');
+panelBody.className = 'panel__body';
+panelBody.style.position = 'relative';
+panelBody.appendChild(advisoryDiv);
+newPanel.appendChild(panelBody);
+var sidebar = document.querySelector('div.sidebar');
+sidebar.insertBefore(newPanel, sidebar.childNodes[4]);
 
     GM_xmlhttpRequest({
         method: "GET",
