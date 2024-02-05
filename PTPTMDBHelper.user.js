@@ -12,7 +12,7 @@
 
 
 /// API KEY GOES BELOW 'INBETWEEN_THESE'
-let apiKey = '75c8f6d3dd058fe33f10db544d0cbb6b';
+let apiKey = '#########';
 /// API KEY GOES ABOVE 'INBETWEEN_THESE'
 
 if (!apiKey || apiKey.trim() === '') {
