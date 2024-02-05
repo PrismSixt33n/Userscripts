@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PTP Parental Guidance Helper
 // @namespace    Prism16
-// @version      1.1
+// @version      1.2
 // @description  Add IMDB Parental Guidance Notes Onto PTP
 // @author       Prism16
 // @match        https://passthepopcorn.me/torrents.php*
@@ -18,10 +18,10 @@
         let style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML = `
-        .spoiler {
+        .parentalspoiler {
             color: transparent;
         }
-        .spoiler:hover {
+        .parentalspoiler:hover {
             color: inherit;
         }
     `;
@@ -73,7 +73,7 @@
             advisoryDiv.appendChild(sexnudityStatus);}
     if (sexnudityText) {
         if (hidetext) {
-            sexnudityText.classList.add('spoiler');
+            sexnudityText.classList.add('parentalspoiler');
         }
         advisoryDiv.appendChild(sexnudityText);
     }
@@ -87,7 +87,7 @@
 
     if (violencegoreText) {
         if (hidetext) {
-            violencegoreText.classList.add('spoiler');
+            violencegoreText.classList.add('parentalspoiler');
         }
         advisoryDiv.appendChild(violencegoreText);
     }
@@ -102,7 +102,7 @@
 
     if (profanityText) {
         if (hidetext) {
-            profanityText.classList.add('spoiler');
+            profanityText.classList.add('parentalspoiler');
         }
         advisoryDiv.appendChild(profanityText);
     }
@@ -117,7 +117,7 @@
 
     if (alcoholdrugsText) {
         if (hidetext) {
-            alcoholdrugsText.classList.add('spoiler');
+            alcoholdrugsText.classList.add('parentalspoiler');
         }
         advisoryDiv.appendChild(alcoholdrugsText);
     }
@@ -132,7 +132,7 @@
 
     if (frighteningText) {
         if (hidetext) {
-            frighteningText.classList.add('spoiler');
+            frighteningText.classList.add('parentalspoiler');
         }
         advisoryDiv.appendChild(frighteningText);
     }
