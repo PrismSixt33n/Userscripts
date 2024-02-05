@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PTP Parental Guidance Helper
 // @namespace    Prism16
-// @version      1.3
+// @version      1.4
 // @description  Add IMDB Parental Guidance Notes Onto PTP
 // @author       Prism16
 // @match        https://passthepopcorn.me/torrents.php*
@@ -14,7 +14,7 @@
 ;
 
     let hidetext = true; // or false
-
+    var isPanelVisible = false; // or true
         let style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML = `
@@ -47,12 +47,12 @@ imdb.textContent = 'iMDB';
 title.appendChild(imdb);
 title.appendChild(document.createTextNode(' Parental Notes'));
 
-// Create the toggle element
 var toggle = document.createElement('a');
 toggle.className = 'panel__heading__toggler';
 toggle.title = 'Toggle';
 toggle.href = '#';
 toggle.textContent = 'Toggle';
+
 toggle.onclick = function() {
     var panelBody = document.querySelector('#parents_guide .panel__body');
     panelBody.style.display = (panelBody.style.display === 'none') ? 'block' : 'none';
@@ -65,6 +65,7 @@ newPanel.appendChild(panelHeading);
 var panelBody = document.createElement('div');
 panelBody.className = 'panel__body';
 panelBody.style.position = 'relative';
+panelBody.style.display = isPanelVisible ? 'block' : 'none';
 panelBody.appendChild(advisoryDiv);
 newPanel.appendChild(panelBody);
 var sidebar = document.querySelector('div.sidebar');
