@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PTP - TMDB To PassThePopcorn
-// @version      1
+// @version      1.2
 // @grant        GM_xmlhttpRequest
 // @grant        GM.notification
 // @match        https://passthepopcorn.me/torrents.php*
@@ -12,7 +12,7 @@
 
 
 /// API KEY GOES BELOW 'INBETWEEN_THESE'
-let apiKey = '';
+let apiKey = '75c8f6d3dd058fe33f10db544d0cbb6b';
 /// API KEY GOES ABOVE 'INBETWEEN_THESE'
 
 if (!apiKey || apiKey.trim() === '') {
@@ -52,45 +52,16 @@ window.addEventListener('load', function() {
                                 posterImg.src = 'https://image.tmdb.org/t/p/w500' + posters[currentIndex].file_path;
                             }
                         }
-var prevButton = document.createElement('button');
-prevButton.textContent = '<';
-prevButton.style.backgroundColor = 'transparent';
-prevButton.style.border = 'none';
-prevButton.style.color = 'transparent';
-prevButton.style.fontSize = '2em';
-prevButton.style.position = 'absolute';
-prevButton.style.top = '50%';
-prevButton.style.left = '10px';
-prevButton.addEventListener('click', function() {
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = posters.length - 1;
-    }
-    updatePoster();
-});
-var nextButton = document.createElement('button');
-nextButton.textContent = '>';
-nextButton.style.backgroundColor = 'transparent';
-nextButton.style.border = 'none';
-nextButton.style.color = 'transparent';
-nextButton.style.fontSize = '2em';
-nextButton.style.position = 'absolute';
-nextButton.style.top = '50%';
-nextButton.style.right = '10px';
-nextButton.addEventListener('click', function() {
-    currentIndex++;
-    if (currentIndex >= posters.length) {
-        currentIndex = 0;
-    }
-    updatePoster();
-});
 var textSpan = document.querySelector("#content > div > div.sidebar > div.box_albumart.panel > div.panel__heading > span");
 textSpan.style.position = 'relative';
 textSpan.style.left = '0px';
-var textPrevButton = prevButton.cloneNode(true);
+var textPrevButton = document.createElement('button');
+textPrevButton.textContent = '<';
+textPrevButton.style.backgroundColor = 'transparent';
+textPrevButton.style.border = 'none';
+textPrevButton.style.color = '#afcfee';
 textPrevButton.style.fontSize = '1em';
 textPrevButton.style.top = '2px';
-textPrevButton.style.color = '#afcfee';
 textPrevButton.style.left = '-13px';
 textPrevButton.addEventListener('click', function() {
     currentIndex--;
@@ -99,10 +70,13 @@ textPrevButton.addEventListener('click', function() {
     }
     updatePoster();
 });
-var textNextButton = nextButton.cloneNode(true);
+var textNextButton = document.createElement('button');
+textNextButton.textContent = '>';
+textNextButton.style.backgroundColor = 'transparent';
+textNextButton.style.border = 'none';
+textNextButton.style.color = '#afcfee';
 textNextButton.style.fontSize = '1em';
 textNextButton.style.top = '2px';
-textNextButton.style.color = '#afcfee';
 textNextButton.style.right = '-13px';
 textNextButton.addEventListener('click', function() {
     currentIndex++;
@@ -113,8 +87,6 @@ textNextButton.addEventListener('click', function() {
 });
 textSpan.parentNode.insertBefore(textPrevButton, textSpan);
 textSpan.parentNode.insertBefore(textNextButton, textSpan.nextSibling);
-posterImg.parentNode.appendChild(prevButton);
-posterImg.parentNode.appendChild(nextButton);
 updatePoster();
                     }
                 }
