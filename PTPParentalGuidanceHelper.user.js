@@ -60,7 +60,7 @@ toggle.onclick = function() {
 };
 
 panelHeading.appendChild(title);
-panelHeading.appendChild(toggle);  // Append the toggle to the panel heading
+panelHeading.appendChild(toggle);
 newPanel.appendChild(panelHeading);
 var panelBody = document.createElement('div');
 panelBody.className = 'panel__body';
