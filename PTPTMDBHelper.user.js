@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PTP - TMDB To PassThePopcorn
-// @version      1.3
+// @version      1.4
 // @grant        GM_xmlhttpRequest
 // @grant        GM.notification
 // @match        https://passthepopcorn.me/torrents.php*
@@ -12,7 +12,7 @@
 
 
 /// API KEY GOES BELOW 'INBETWEEN_THESE'
-let apiKey = '75c8f6d3dd058fe33f10db544d0cbb6b';
+let apiKey = '###############';
 /// API KEY GOES ABOVE 'INBETWEEN_THESE'
 var isPanelVisible = false;
 if (!apiKey || apiKey.trim() === '') {
@@ -266,7 +266,7 @@ toggle.href = '#';
 toggle.textContent = 'Toggle';
 
 toggle.onclick = function() {
-    var panelBody = document.querySelector('#parents_guide .panel__body');
+    var panelBody = document.querySelector('#extravideos .panel__body');
     panelBody.style.display = (panelBody.style.display === 'none') ? 'block' : 'none';
     return false;
 };
