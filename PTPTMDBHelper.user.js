@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PTP - TMDB To PassThePopcorn
-// @version      1.2
+// @version      1.3
 // @grant        GM_xmlhttpRequest
 // @grant        GM.notification
 // @match        https://passthepopcorn.me/torrents.php*
@@ -12,9 +12,9 @@
 
 
 /// API KEY GOES BELOW 'INBETWEEN_THESE'
-let apiKey = '#########';
+let apiKey = '75c8f6d3dd058fe33f10db544d0cbb6b';
 /// API KEY GOES ABOVE 'INBETWEEN_THESE'
-
+var isPanelVisible = false;
 if (!apiKey || apiKey.trim() === '') {
   GM.notification("No API Key..", "TMDB To PTP");
   console.log('No API Key. Stopping script.');
@@ -246,32 +246,42 @@ window.addEventListener('load', function() {
                                 videoList.appendChild(listItem);
                             }
                         });
-                        var newPanel = document.createElement('div');
-                        newPanel.className = 'panel';
-                        newPanel.id = 'parents_guide';
-                        var panelHeading = document.createElement('div');
-                        panelHeading.className = 'panel__heading';
-                        var title = document.createElement('span');
-                        title.className = 'panel__heading__title';
-                        var tmdb = document.createElement('span');
-                        tmdb.style.color = '#50C2BF';
-                        tmdb.textContent = 'TMDB';
-                        title.appendChild(tmdb);
-                        title.appendChild(document.createTextNode(' Video Links'));
-                        panelHeading.appendChild(title);
-                        var poweredBy = document.createElement('span');
-                        poweredBy.id = 'powered_by';
-                        poweredBy.style.cssText = 'float: right; font-size: 0.4rem !important; font-weight: bold;';
-                        poweredBy.textContent = 'Powered By TMDB Helper';
-                        panelHeading.appendChild(poweredBy);
-                        newPanel.appendChild(panelHeading);
-                        var panelBody = document.createElement('div');
-                        panelBody.className = 'panel__body';
-                        panelBody.style.position = 'relative';
-                        panelBody.appendChild(videoList);
-                        newPanel.appendChild(panelBody);
-                        var sidebar = document.querySelector('div.sidebar');
-                        sidebar.insertBefore(newPanel, sidebar.childNodes[7]);
+var newPanel = document.createElement('div');
+newPanel.className = 'panel';
+newPanel.id = 'extravideos';
+var panelHeading = document.createElement('div');
+panelHeading.className = 'panel__heading';
+var title = document.createElement('span');
+title.className = 'panel__heading__title';
+var tmdb = document.createElement('span');
+tmdb.style.color = '#50C2BF';
+tmdb.textContent = 'TMDB';
+title.appendChild(tmdb);
+title.appendChild(document.createTextNode(' Video Links'));
+
+var toggle = document.createElement('a');
+toggle.className = 'panel__heading__toggler';
+toggle.title = 'Toggle';
+toggle.href = '#';
+toggle.textContent = 'Toggle';
+
+toggle.onclick = function() {
+    var panelBody = document.querySelector('#parents_guide .panel__body');
+    panelBody.style.display = (panelBody.style.display === 'none') ? 'block' : 'none';
+    return false;
+};
+
+panelHeading.appendChild(title);
+panelHeading.appendChild(toggle);
+newPanel.appendChild(panelHeading);
+var panelBody = document.createElement('div');
+panelBody.className = 'panel__body';
+panelBody.style.position = 'relative';
+panelBody.style.display = isPanelVisible ? 'block' : 'none';
+panelBody.appendChild(videoList);
+newPanel.appendChild(panelBody);
+var sidebar = document.querySelector('div.sidebar');
+sidebar.insertBefore(newPanel, sidebar.childNodes[7]);
                     }
                 });
             }
