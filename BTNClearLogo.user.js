@@ -15,7 +15,7 @@ var isPanelVisible = false;
 (function() {
     'use strict';
 
-    var fanartapiKey = "c43fa4c35ae9c4614e9ccbb36fae0052";
+    var fanartapiKey = "#################";
 
     function searchTVDBUrl() {
         let aElements = document.getElementsByTagName('a');
