@@ -40,7 +40,7 @@
                         notesDiv.appendChild(list);
                         boxDiv.appendChild(headDiv);
                         boxDiv.appendChild(notesDiv);
-                        mainColumn.insertBefore(boxDiv, mainColumn.children[1]);
+                        mainColumn.insertBefore(boxDiv, mainColumn.children[2]);
 
                         headDiv.addEventListener('click', function() {
                             notesDiv.style.display = notesDiv.style.display === 'none' ? 'block' : 'none';
